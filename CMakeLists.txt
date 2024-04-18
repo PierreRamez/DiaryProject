@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(DiaryProject
         main.cpp
-        RecordManager.cpp)
+        RecordManager.cpp
+        FileHandler.cpp
+        FileHandler.h)
