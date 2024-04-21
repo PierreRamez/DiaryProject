@@ -1,6 +1,6 @@
 #ifndef DIARYPROJECT_RECORDMANAGER_H
 #define DIARYPROJECT_RECORDMANAGER_H
-
+#include <string>
 using std::string;
 
 class RecordManager {
@@ -14,6 +14,16 @@ public:
     void viewRecord();
     void editRecord();
     void deleteRecord();
+
+    void setTaskDur(string);
+    void setName(string);
+    void setAddress(string);
+    void setDateTime(string);
+
+    string getTaskDur();
+    string getName();
+    string getAddress();
+    string getDateTime();
 };
 
 

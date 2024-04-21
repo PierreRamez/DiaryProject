@@ -2,10 +2,12 @@
 #define DIARYPROJECT_FILEHANDLER_H
 
 
+#include "RecordManager.h"
+
 class FileHandler {
 
 public:
-    void saveToFile();
+    void saveToFile(RecordManager);
     void readFromFile();
     void updateFile();
 };

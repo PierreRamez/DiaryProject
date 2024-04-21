@@ -7,7 +7,9 @@
 using namespace std;
 
 int main(){
-
+    RecordManager recordManager;
+    FileHandler fileHandler;
+    PasswordManager passwordManager;
 }
 
 

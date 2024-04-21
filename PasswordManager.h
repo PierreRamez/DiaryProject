@@ -1,5 +1,6 @@
-#pragma once
-#include<iostream>
+#ifndef DIARYPROJECT_PASSWORDMANAGER_H
+#define DIARYPROJECT_PASSWORDMANAGER_H
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -12,3 +13,4 @@ class PasswordManager
 		void setPassword(string newPassword);
 };
 
+#endif

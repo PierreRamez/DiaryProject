@@ -3,10 +3,11 @@
 using namespace std;
 
 ifstream input;
-ofstream output;
+ofstream output("/home/ms/Documents/Records/TestRecord.txt");
 
-void FileHandler::saveToFile() {
-
+void FileHandler::saveToFile(RecordManager recordManager) {
+    output << recordManager.getName() << '\n' << recordManager.getDateTime() << '\n' << recordManager.getAddress()
+    << '\n' << recordManager.getTaskDur();
 }
 
 void FileHandler::readFromFile() {

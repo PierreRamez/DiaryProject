@@ -5,10 +5,10 @@ using namespace std;
 
 void PasswordManager::setPassword(string newPassword) {
 	string pass1, pass2;
-	bool doubleCheck = 0, passwordExist = 0;
+	bool doubleCheck = false, passwordExists = false;
 	char choice;
 
-	if (passwordExist = true) { // to check if there's old password already set
+	if (passwordExists == true) { // to check if there's old password already set
 		cout << "Do you want to change your password? (Y/N)\n";
 		cin >> choice;
 
@@ -25,15 +25,14 @@ void PasswordManager::setPassword(string newPassword) {
 					cout << "Your password was changed successfully!\n";
 					newPassword = pass2;
 					password = newPassword;
-					doubleCheck = 1;
+					doubleCheck = true;
 
 					cout << "Your password is: " << newPassword << "\nremember it well!\n";
-
 				}
 				else {
 					cout << "Passwords don't match, please re-enter your password:\n";
 				}
-			} while (doubleCheck = 0);
+			} while (doubleCheck == 0);
 		}
 		else {
 			cout << "Password won't be changed!" << endl;
@@ -53,15 +52,16 @@ void PasswordManager::setPassword(string newPassword) {
 				cout << "Your password was set successfully!\n";
 				newPassword= pass2;
 				password = newPassword;
-				doubleCheck = 1;
+				doubleCheck = true;
 
 				cout << "Your password is: " << newPassword << "\nremember it well!\n";
+                passwordExists = true;
 			}
 
 			else {
 				cout << "Passwords don't match, please re-enter your password:\n";
 			}
-		} while (doubleCheck = 0);
+		} while (doubleCheck == 0);
 	}
 	}
 

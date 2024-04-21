@@ -20,12 +20,10 @@ void RecordManager::addRecord() {
 }
 
 void RecordManager::viewRecord() {
-
 	cout << "The task duration for the diary is: " << taskDuration << endl;
 	cout << "The title of the diary is: " << name << endl;
 	cout << "The address for the diary is: " << address << endl;
 	cout << "The time of the diary is (" << dateTime << ")\n";
-
 }
 
 void RecordManager::editRecord() {
@@ -60,33 +58,37 @@ void RecordManager::editRecord() {
 }
 
 void RecordManager::deleteRecord() {
-	char del;
-	bool correct = true;
-    do{
-	    cout << "Please select the record you want to delete\n";
-    	cout << "If you want to delete the name enter N/n" << endl << "If you want to delete the address enter A/a" << endl
-                  << "If you want to delete the task duration enter T/t" << endl <<
-                 "If you want to delete the date and time enter D/d\n";
-    	cin >> del;
-    	if (del == 'N' || del == 'n') {
-    		cout << "The name of the diary is deleted successfully!\n";
-            //@todo:implement deleting
-	    }
-    	else if (del == 'A' || del == 'a') {
-    		cout << "Please enter a new address for the diary:\n";
-            getline(cin, address);
-    	}
-    	else if (del == 'T' || del == 't') {
-    		cout << "Please enter a new duration for the diary:\n";
-    		getline(cin, taskDuration);
-	    }
-	    else if (del == 'D' || del == 'd') {
-		    cout << "Please enter a new date and time for the diary:\n";
-		    getline(cin, dateTime);
-    	}
-	    else {
-		    cout << "Please enter a valid letter!\n";
-            correct = false;
-	    }
-    }while (!correct);
+    delete this;
+}
+
+string RecordManager::getTaskDur(){
+    return taskDuration;
+}
+
+string RecordManager::getAddress(){
+    return address;
+}
+
+string RecordManager::getName(){
+    return name;
+}
+
+string RecordManager::getDateTime(){
+    return dateTime;
+}
+
+void RecordManager::setTaskDur(string dur) {
+    taskDuration = dur;
+}
+
+void RecordManager::setName(string nam) {
+    name = nam;
+}
+
+void RecordManager::setAddress(string addr) {
+    address = addr;
+}
+
+void RecordManager::setDateTime(string time) {
+    dateTime = time;
 }
