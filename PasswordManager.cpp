@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<fstream>
 #include "PasswordManager.h"
 using namespace std;
 
@@ -67,5 +68,10 @@ void PasswordManager::setPassword(string newPassword) {
 
 
 string PasswordManager::getPassword() {
-	cout << "Please enter ";
+	string passwordCheck;
+
+	cout << "Please enter the password:\n";
+	getline(cin, passwordCheck);
+
+	// space to add ofstream function to check the entered password (waiting to know how to do it)
 }
