@@ -12,7 +12,7 @@ class RecordManager {
 public:
     void addRecord();
     void viewRecord();
-    void editRecord();
+    void editRecord(char);
     void deleteRecord();
 
     void setTaskDur(string);

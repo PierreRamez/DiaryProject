@@ -1,9 +1,18 @@
 #include "FileHandler.h"
 #include <fstream>
-using namespace std;
+#include <filesystem>
 
+using namespace std;
+using namespace filesystem;
+
+string targetDir = "/home/ms/Documents/Records/";
 ifstream input;
-ofstream output("/home/ms/Documents/Records/TestRecord.txt");
+ofstream output;
+string fileName;
+
+FileHandler::FileHandler() {
+    create_directory(targetDir);
+}
 
 void FileHandler::saveToFile(RecordManager recordManager) {
     output << recordManager.getName() << '\n' << recordManager.getDateTime() << '\n' << recordManager.getAddress()
@@ -15,5 +24,9 @@ void FileHandler::readFromFile() {
 }
 
 void FileHandler::updateFile() {
+
+}
+
+void FileHandler::deleteFile(){
 
 }

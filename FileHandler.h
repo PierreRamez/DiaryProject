@@ -7,9 +7,11 @@
 class FileHandler {
 
 public:
+    FileHandler();
     void saveToFile(RecordManager);
     void readFromFile();
     void updateFile();
+    void deleteFile();
 };
 
 
