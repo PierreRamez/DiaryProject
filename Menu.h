@@ -3,15 +3,17 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include "RecordManager.h"
+#include "PasswordManager.h"
 
 using namespace std;
 
 class Menu
 {
 public:
-     void displayMainMenu();
-	 void getUserChoice(int);
-	 void displayRecordList();
+    void displayMainMenu();
+    void getUserChoice(int, RecordManager, PasswordManager);
+    void displayRecordList();
 
 };
 #endif

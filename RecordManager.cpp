@@ -5,31 +5,28 @@
 using namespace std;
 
 void RecordManager::addRecord() {
-	cout << "Please enter the task duration: \n";
-	cin >> taskDuration;
-	cin.ignore();
+    cout << "Please enter the task duration: \n";
+    cin >> taskDuration;
+    cin.ignore();
 
-	cout << "Please enter the name:\n";
-	getline(cin, name);
+    cout << "Please enter the name:\n";
+    getline(cin, name);
 
-	cout << "Please enter the address: \n";
-	getline(cin, address);
+    cout << "Please enter the address: \n";
+    getline(cin, address);
 
-	cout << "Please enter the date and time (ex. time, DD//MM//YYYY): \n";
-	getline(cin, dateTime);
+    cout << "Please enter the date and time (ex. time, DD//MM//YYYY): \n";
+    getline(cin, dateTime);
 }
 
 void RecordManager::viewRecord() {
-	cout << "The task duration for the diary is: " << taskDuration << endl;
-	cout << "The title of the diary is: " << name << endl;
-	cout << "The address for the diary is: " << address << endl;
-	cout << "The time of the diary is (" << dateTime << ")\n";
+    cout << "The task duration for the diary is: " << taskDuration << endl;
+    cout << "The title of the diary is: " << name << endl;
+    cout << "The address for the diary is: " << address << endl;
+    cout << "The time of the diary is (" << dateTime << ")\n";
 }
 
 void RecordManager::editRecord(char edit) {
-    bool valid = false;
-
-    do{
     if (edit == 'N' || edit == 'n') {
         cout << "Please enter a new name for the diary:\n";
         getline(cin, name);
