@@ -7,4 +7,5 @@ add_executable(DiaryProject
         main.cpp
         RecordManager.cpp
         FileHandler.cpp
-        PasswordManager.cpp)
+        PasswordManager.cpp
+        Menu.cpp)

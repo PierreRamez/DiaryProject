@@ -1,6 +1,7 @@
 #ifndef DIARYPROJECT_RECORDMANAGER_H
 #define DIARYPROJECT_RECORDMANAGER_H
 #include <string>
+
 using std::string;
 
 class RecordManager {

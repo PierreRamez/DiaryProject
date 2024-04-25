@@ -43,7 +43,7 @@ void PasswordManager::setPassword(string newPassword) {
 	else { // if this is the first password to be set
 
 		do {
-			cout << "Please enter a your password:\n";
+			cout << "Please enter your password:\n";
 			getline(cin, pass1);
 
 			cout << "Please enter your password again:\n"; // password checker

@@ -9,8 +9,9 @@ using namespace std;
 class Menu
 {
 public:
-	void displayMainMenu();
-	void displayRecordList();
-	void getUserChoice(string);
+     void displayMainMenu();
+	 void getUserChoice(int);
+	 void displayRecordList();
+
 };
 #endif
