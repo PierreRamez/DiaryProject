@@ -11,7 +11,7 @@ using namespace std;
 class Menu
 {
 public:
-    void displayMainMenu();
+    void displayMainMenu(RecordManager);
     void getUserChoice(int, RecordManager, PasswordManager);
     void displayRecordList(RecordManager);
 

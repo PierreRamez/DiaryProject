@@ -4,6 +4,14 @@
 
 using namespace std;
 
+RecordManager::RecordManager() {
+    name = "UNKNOWN";
+    taskDuration = "UNKNOWN";
+    dateTime = "UNKNOWN";
+    address="UNKNOWN";
+    recordAvailable = false;
+}
+
 void RecordManager::addRecord() {
     cout << "Please enter the task duration: \n";
     cin >> taskDuration;

@@ -11,6 +11,9 @@ class RecordManager {
     string address;
     string dateTime;
 public:
+    bool recordAvailable = true;
+
+    RecordManager();
     void addRecord();
     void viewRecord();
     void editRecord(char);
