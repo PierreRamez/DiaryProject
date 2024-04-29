@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <fstream>
 #include "RecordManager.h"
 #include "FileHandler.h"
 #include "PasswordManager.h"
@@ -12,7 +11,14 @@ int main(){
     FileHandler fileHandler;
     PasswordManager passwordManager;
 
-    fileHandler.saveToFile(recordManager);
+    //fileHandler.saveToFile(recordManager);
+    vector<RecordManager> records = fileHandler.readFromFile();
+    for(auto record : records){
+        cout << record.getName() << '\n';
+        cout << record.getAddress() << '\n';
+        cout << record.getDateTime() << '\n';
+        cout << record.getTaskDur() << '\n';
+    }
 }
 
 

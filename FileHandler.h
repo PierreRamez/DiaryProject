@@ -3,14 +3,17 @@
 
 
 #include "RecordManager.h"
+#include <iostream>
+#include <fstream>
+#include <filesystem>
+#include <vector>
 
 class FileHandler {
 public:
     FileHandler();
     void saveToFile(RecordManager);
-    void readFromFile();
+    std::vector<RecordManager> readFromFile();
     void updateFile();
-    void deleteFile();
 };
 
 
