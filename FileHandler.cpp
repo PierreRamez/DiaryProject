@@ -6,17 +6,20 @@ using namespace std;
 using namespace filesystem;
 
 string targetDir = "/home/ms/Documents/Records/";
-ifstream input;
-ofstream output;
-string fileName;
+string fileName = "Test.csv";
+ifstream input(targetDir + fileName);
+ofstream output(targetDir + fileName, ios::app);
+
 
 FileHandler::FileHandler() {
     create_directory(targetDir);
 }
 
 void FileHandler::saveToFile(RecordManager recordManager) {
-    output << recordManager.getName() << '\n' << recordManager.getDateTime() << '\n' << recordManager.getAddress()
-    << '\n' << recordManager.getTaskDur();
+    if(input.peek() != ifstream::traits_type::eof())
+        output << '\n';
+    output << recordManager.getName() << ',' << recordManager.getDateTime() << ','  << recordManager.getAddress()
+    << ',' << recordManager.getTaskDur();
 }
 
 void FileHandler::readFromFile() {
@@ -27,6 +30,3 @@ void FileHandler::updateFile() {
 
 }
 
-void FileHandler::deleteFile(){
-
-}

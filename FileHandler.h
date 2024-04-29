@@ -5,7 +5,6 @@
 #include "RecordManager.h"
 
 class FileHandler {
-
 public:
     FileHandler();
     void saveToFile(RecordManager);

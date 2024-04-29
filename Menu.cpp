@@ -16,7 +16,6 @@ void Menu::displayMainMenu() {
 
 void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passwordManager) {
     int userChoice;
-
     do {
         cin >> userChoice;
 
@@ -63,6 +62,6 @@ void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passw
             break;
     }
 }
-void Menu::displayRecordList() {
-    //RecordManager::viewRecord();
+void Menu::displayRecordList(RecordManager recordManager) {
+    recordManager.viewRecord();
 }

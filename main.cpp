@@ -11,6 +11,8 @@ int main(){
     RecordManager recordManager;
     FileHandler fileHandler;
     PasswordManager passwordManager;
+
+    fileHandler.saveToFile(recordManager);
 }
 
 

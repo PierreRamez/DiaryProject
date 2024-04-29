@@ -13,7 +13,7 @@ class Menu
 public:
     void displayMainMenu();
     void getUserChoice(int, RecordManager, PasswordManager);
-    void displayRecordList();
+    void displayRecordList(RecordManager);
 
 };
 #endif
