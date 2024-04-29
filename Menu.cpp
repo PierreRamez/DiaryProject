@@ -4,20 +4,35 @@
 
 using namespace std;
 
-void Menu::displayMainMenu() {
-    cout << "\tMAIN MENU"<<endl<<"________________________" <<
-         endl<<"ADD DIARY       [1]" << endl<<
-         "VIEW DIARY      [2]" << endl<<
-         "EDIT DIARY      [3]" << endl<<
-         "DELETE DIARY    [4]" << endl<<
-         "EDIT PASSWORD   [5]" << endl<<
-         "EXIT            [6]" << endl;
+void Menu::displayMainMenu(RecordManager recordManager) {
+    if (!recordManager.recordAvailable){
+        cout << "\tMAIN MENU"<<endl<<"________________________" <<
+                                                     endl<<"ADD DIARY       [1]" << endl<<
+                                                     "EDIT DIARY      [2]" << endl<<
+                                                     "DELETE DIARY    [3]" << endl<<
+                                                     "EDIT PASSWORD   [4]" << endl<<
+                                                     "EXIT            [5]" << endl;
+    }
+    else {
+        cout << "\tMAIN MENU" << endl << "________________________" <<
+             endl << "ADD DIARY       [1]" << endl <<
+             "VIEW DIARY      [2]" << endl <<
+             "EDIT DIARY      [3]" << endl <<
+             "DELETE DIARY    [4]" << endl <<
+             "EDIT PASSWORD   [5]" << endl <<
+             "EXIT            [6]" << endl;
+    }
 }
 
 void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passwordManager) {
     int userChoice;
     do {
         cin >> userChoice;
+
+        if(!recordManager.recordAvailable){
+            if (userChoice!=1)
+            userChoice++;
+        }
 
         if (1 > userChoice || userChoice > 6) {
             cout << "Please enter a valid choice!\n";
@@ -30,7 +45,7 @@ void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passw
             recordManager.addRecord();
             break;
         case 2:
-            displayMainMenu();
+            recordManager.viewRecord();
             break;
         case 3:
             char editChoice;
