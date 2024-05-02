@@ -11,14 +11,7 @@ int main(){
     FileHandler fileHandler;
     PasswordManager passwordManager;
 
-    //fileHandler.saveToFile(recordManager);
     vector<RecordManager> records = fileHandler.readFromFile();
-    for(auto record : records){
-        cout << record.getName() << '\n';
-        cout << record.getAddress() << '\n';
-        cout << record.getDateTime() << '\n';
-        cout << record.getTaskDur() << '\n';
-    }
 }
 
 

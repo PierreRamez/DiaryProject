@@ -1,7 +1,6 @@
 #include "FileHandler.h"
 
 using namespace std;
-using namespace filesystem;
 
 string targetDir = "/home/ms/Documents/Records/";
 string fileName = "Test.csv";
@@ -12,31 +11,31 @@ ofstream output(targetDir + fileName, ios::app);
 
 
 FileHandler::FileHandler() {
-    create_directory(targetDir);
+    filesystem::create_directory(targetDir);
 }
 
 void FileHandler::saveToFile(RecordManager recordManager) {
-    if(input.peek() != ifstream::traits_type::eof())
-        output << '\n';
     output << recordManager.getName() << ',' << recordManager.getDateTime() << ','  << recordManager.getAddress()
-    << ',' << recordManager.getTaskDur();
+    << ',' << recordManager.getTaskDur() << '\n';
 }
 
 vector<RecordManager> FileHandler::readFromFile() {
-    vector<string> fields;
+
     string line;
     vector<RecordManager> records;
-    RecordManager record;
+
     int idx = 0;
 
     while(getline(input, line)){
         stringstream ss(line);
+        vector<string> fields;
 
         string field;
         while(getline(ss, field, ',')){
             fields.push_back(field);
         }
 
+        RecordManager record;
         record.setName(fields.at(0));
         record.setDateTime(fields.at(1));
         record.setAddress(fields.at(2));
@@ -47,6 +46,14 @@ vector<RecordManager> FileHandler::readFromFile() {
     return records;
 }
 
-void FileHandler::updateFile() {
+void FileHandler::updateFile(vector<RecordManager>) {
 
+}
+
+void FileHandler::clearFile() {
+    filesystem::remove(targetDir + fileName);
+}
+
+void FileHandler::setDirectory(const string &dir) {
+    directory = dir;
 }
