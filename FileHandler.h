@@ -3,6 +3,7 @@
 
 
 #include "RecordManager.h"
+#include"PasswordManager.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -17,6 +18,8 @@ public:
     void updateFile(std::vector<RecordManager>);
     void clearFile();
     void setDirectory(const string &);
+    void setPassword(string);
+    string getPassword(PasswordManager passwordManager);
 };
 
 

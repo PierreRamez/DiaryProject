@@ -4,7 +4,9 @@
 #include "PasswordManager.h"
 using namespace std;
 
-void PasswordManager::setPassword(string newPassword) {
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnreachableCode"
+void PasswordManager::setPassword(string newPassword,FileHandler fileHandler) {
 	string pass1, pass2;
 	bool doubleCheck = false, passwordExists = false;
 	char choice;
@@ -28,7 +30,9 @@ void PasswordManager::setPassword(string newPassword) {
 					password = newPassword;
 					doubleCheck = true;
 
-					cout << "Your password is: " << newPassword << "\nremember it well!\n";
+                    fileHandler.setPassword(password); // passing the password to the file if it matches
+
+                    cout << "Your password is: " << newPassword << "\nremember it well!\n";
 				}
 				else {
 					cout << "Passwords don't match, please re-enter your password:\n";
@@ -55,9 +59,12 @@ void PasswordManager::setPassword(string newPassword) {
 				password = newPassword;
 				doubleCheck = true;
 
-				cout << "Your password is: " << newPassword << "\nremember it well!\n";
+                fileHandler.setPassword(password); // passing the password to the file if it matches
+
+                cout << "Your password is: " << newPassword << "\nremember it well!\n";
                 passwordExists = true;
-			}
+
+            }
 
 			else {
 				cout << "Passwords don't match, please re-enter your password:\n";
@@ -66,12 +73,17 @@ void PasswordManager::setPassword(string newPassword) {
 	}
 	}
 
-
-string PasswordManager::getPassword() {
-	string passwordCheck;
-
-	cout << "Please enter the password:\n";
-	getline(cin, passwordCheck);
-
-	// space to add ofstream function to check the entered password (waiting to know how to do it)
+bool PasswordManager::getPassword(string pass) {
+    bool passwordMatches;
+    if(pass==password){
+    passwordMatches = true;
+    }
+    else
+    {
+     passwordMatches=false;
+    }
+    return passwordMatches; /* to check if the password entered is the
+    same as the one stored in the file */
 }
+
+#pragma clang diagnostic pop
