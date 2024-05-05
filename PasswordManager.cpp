@@ -4,10 +4,11 @@
 #include "PasswordManager.h"
 using namespace std;
 
+bool passwordExists = false;
 
 void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	string pass1, pass2;
-	bool doubleCheck = false, passwordExists = false;
+	bool doubleCheck = false;
 	char choice;
 
 	if (passwordExists == true) { // to check if there's old password already set
@@ -75,4 +76,14 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 bool PasswordManager::getPassword(const string& pass) {
     return pass == password; /* to check if the password entered is the
     same as the one stored in the file */
+}
+
+bool PasswordManager::checkPasswordAvailability() {
+    bool exists;
+    if (passwordExists){
+        exists = true;
+    }
+    else
+        exists = false;
+    return exists;
 }
