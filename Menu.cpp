@@ -69,17 +69,26 @@ void Menu::displayRecordList(vector<RecordManager> records) {
     }
 }
 
-bool Menu::authenticateUser(PasswordManager passwordManager) {
-    string pass;
-    cout << "Please enter your password to access your records\n";
-    cin >> pass;
-    bool auth = passwordManager.getPassword(pass);
+bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHandler) {
+    string password;
     bool passExist = passwordManager.checkPasswordAvailability();
+
+    if (passExist) {
+        cout << "Please enter your password to access your records\n";
+        cin >> password;
+        bool auth = passwordManager.getPassword(password);
 
         if (auth) {
             cout << "User authenticated\n";
         } else
             cout << "Incorrect password\n";
         return auth;
+    } else {
+        string pass;
+        cout<<"Please enter a password for your diary:\n";
+        getline(cin,pass);
+        passwordManager.setPassword(password,fileHandler);
     }
+}
+
 
