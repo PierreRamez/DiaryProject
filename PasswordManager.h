@@ -8,10 +8,10 @@ using namespace std;
 
 class PasswordManager
 {
-		string password;
-	public:
-		bool getPassword(string);
-		void setPassword(string newPassword,FileHandler fileHandler);
+    string password;
+public:
+    bool getPassword(const string&);
+    void setPassword(string newPassword,FileHandler fileHandler);
 };
 
 #endif

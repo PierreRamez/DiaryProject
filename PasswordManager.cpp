@@ -4,9 +4,8 @@
 #include "PasswordManager.h"
 using namespace std;
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "UnreachableCode"
-void PasswordManager::setPassword(string newPassword,FileHandler fileHandler) {
+
+void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	string pass1, pass2;
 	bool doubleCheck = false, passwordExists = false;
 	char choice;
@@ -15,7 +14,7 @@ void PasswordManager::setPassword(string newPassword,FileHandler fileHandler) {
 		cout << "Do you want to change your password? (Y/N)\n";
 		cin >> choice;
 
-		if (choice == 'Y' || 'y') {
+		if (choice == 'Y' || choice == 'y') {
 
 			do {
 				cout << "Please enter a new password:\n";
@@ -71,19 +70,9 @@ void PasswordManager::setPassword(string newPassword,FileHandler fileHandler) {
 			}
 		} while (doubleCheck == 0);
 	}
-	}
-
-bool PasswordManager::getPassword(string pass) {
-    bool passwordMatches;
-    if(pass==password){
-    passwordMatches = true;
-    }
-    else
-    {
-     passwordMatches=false;
-    }
-    return passwordMatches; /* to check if the password entered is the
-    same as the one stored in the file */
 }
 
-#pragma clang diagnostic pop
+bool PasswordManager::getPassword(const string& pass) {
+    return pass == password; /* to check if the password entered is the
+    same as the one stored in the file */
+}

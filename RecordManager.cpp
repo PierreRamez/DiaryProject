@@ -1,18 +1,11 @@
 #include <string>
 #include <iostream>
 #include "RecordManager.h"
-
+#include "FileHandler.h"
 using namespace std;
 
-RecordManager::RecordManager() {
-    name = "UNKNOWN";
-    taskDuration = "UNKNOWN";
-    dateTime = "UNKNOWN";
-    address="UNKNOWN";
-    recordAvailable = false;
-}
 
-void RecordManager::addRecord() {
+void RecordManager::addRecord(FileHandler fileHandler) {
     cout << "Please enter the task duration: \n";
     cin >> taskDuration;
     cin.ignore();
@@ -25,6 +18,7 @@ void RecordManager::addRecord() {
 
     cout << "Please enter the date and time (ex. time, DD//MM//YYYY): \n";
     getline(cin, dateTime);
+    fileHandler.saveToFile(*this);
 }
 
 void RecordManager::viewRecord() {

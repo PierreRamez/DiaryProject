@@ -4,36 +4,20 @@
 
 using namespace std;
 
-void Menu::displayMainMenu(RecordManager recordManager) {
-    if (!recordManager.recordAvailable){
-        cout << "\tMAIN MENU"<<endl<<"________________________" <<
-                                                     endl<<"ADD DIARY       [1]" << endl<<
-                                                     "EDIT DIARY      [2]" << endl<<
-                                                     "DELETE DIARY    [3]" << endl<<
-                                                     "EDIT PASSWORD   [4]" << endl<<
-                                                     "EXIT            [5]" << endl;
-    }
-    else {
-        cout << "\tMAIN MENU" << endl << "________________________" <<
-             endl << "ADD DIARY       [1]" << endl <<
-             "VIEW DIARY      [2]" << endl <<
-             "EDIT DIARY      [3]" << endl <<
-             "DELETE DIARY    [4]" << endl <<
-             "EDIT PASSWORD   [5]" << endl <<
-             "EXIT            [6]" << endl;
-    }
+void Menu::displayMainMenu() {
+    cout << "\tMAIN MENU" << endl << "________________________" <<
+    endl << "ADD DIARY       [1]" << endl <<
+    "VIEW DIARY      [2]" << endl <<
+    "EDIT DIARY      [3]" << endl <<
+    "DELETE DIARY    [4]" << endl <<
+    "EDIT PASSWORD   [5]" << endl <<
+    "EXIT            [6]" << endl;
 }
 
-void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passwordManager) {
+void Menu::getUserChoice(RecordManager recordManager, PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> records) {
     int userChoice;
     do {
         cin >> userChoice;
-
-        if(!recordManager.recordAvailable){
-            if (userChoice!=1)
-            userChoice++;
-        }
-
         if (1 > userChoice || userChoice > 6) {
             cout << "Please enter a valid choice!\n";
         }
@@ -42,10 +26,11 @@ void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passw
     string newPassword;
     switch(userChoice){
         case 1:
-            recordManager.addRecord();
+            recordManager.addRecord(fileHandler);
             break;
         case 2:
-            recordManager.viewRecord();
+            if(records.size() !=0 )
+                displayRecordList(records);
             break;
         case 3:
             char editChoice;
@@ -71,12 +56,28 @@ void Menu::getUserChoice(int, RecordManager recordManager, PasswordManager passw
             cout << "Please enter a new password:\n";
 
             getline(cin, newPassword);
-            passwordManager.setPassword(newPassword);
+            passwordManager.setPassword(newPassword, fileHandler);
             break;
         case 6:
             break;
     }
 }
-void Menu::displayRecordList(RecordManager recordManager) {
-    recordManager.viewRecord();
+void Menu::displayRecordList(vector<RecordManager> records) {
+    for(int i = 0; i < records.size(); i++){
+        cout << '[' << i+1 << "] ";
+        records.at(i).viewRecord();
+    }
+}
+
+bool Menu::authenticateUser(PasswordManager passwordManager) {
+    string pass;
+    cout << "Please enter your password to access your records";
+    cin >> pass;
+    bool auth = passwordManager.getPassword(pass);
+    if(auth){
+        cout << "User authenticated\n";
+    }
+    else
+        cout << "Incorrect password\n";
+    return auth;
 }

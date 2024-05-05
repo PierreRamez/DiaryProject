@@ -2,6 +2,9 @@
 #define DIARYPROJECT_RECORDMANAGER_H
 #include <string>
 
+//declaring class here to avoid circular dependencies, including FileHandler here errors out
+class FileHandler;
+
 using std::string;
 
 class RecordManager {
@@ -13,8 +16,7 @@ class RecordManager {
 public:
     bool recordAvailable = true;
 
-    RecordManager();
-    void addRecord();
+    void addRecord(FileHandler);
     void viewRecord();
     void editRecord(char);
     void deleteRecord();

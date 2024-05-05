@@ -3,18 +3,15 @@
 using namespace std;
 
 string targetDir = "/home/ms/Documents/Records/";
-string fileName = "Test.csv";
+string fileName = "test.csv";
 
 
-ifstream input(targetDir + fileName);
+ifstream input(fileName);
 ofstream createPass("password.txt",ios::out);
 ifstream checkPass("password.txt");
-ofstream output(targetDir + fileName, ios::app);
+ofstream output(fileName, ios::app);
 
 
-FileHandler::FileHandler() {
-    filesystem::create_directory(targetDir);
-}
 
 void FileHandler::saveToFile(RecordManager recordManager) {
     output << recordManager.getName() << ',' << recordManager.getDateTime() << ','  << recordManager.getAddress()
@@ -48,24 +45,23 @@ vector<RecordManager> FileHandler::readFromFile() {
     return records;
 }
 
-void FileHandler::updateFile(vector<RecordManager>) {
-
-}
-
-void FileHandler::clearFile() {
-    filesystem::remove(targetDir + fileName);
+void FileHandler::updateFile(const vector<RecordManager>& records) {
+    ofstream update(fileName, ios::trunc);
+    for(const auto& record : records){
+        saveToFile(record);
+    }
 }
 
 void FileHandler::setDirectory(const string &dir) {
-    directory = dir;
+    targetDir = dir;
 }
 
 void FileHandler::setPassword(string password) {
-    createPass<<password;
+    createPass << password;
 }
 
-string FileHandler::getPassword(PasswordManager passwordManager) {
+string FileHandler::getPassword() {
     string pass;
-    getline (checkPass,pass);
-    passwordManager.getPassword(pass);
+    getline(checkPass,pass);
+    return pass;
 }
