@@ -15,6 +15,6 @@ public:
     void displayMainMenu();
     void getUserChoice(RecordManager, PasswordManager, FileHandler, vector<RecordManager>);
     void displayRecordList(vector<RecordManager>);
-    bool authenticateUser(PasswordManager);
+    bool authenticateUser(PasswordManager,FileHandler);
 };
 #endif

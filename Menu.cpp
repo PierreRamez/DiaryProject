@@ -5,7 +5,7 @@
 using namespace std;
 
 void Menu::displayMainMenu() {
-    cout << "\tMAIN MENU" << endl << "________________________" <<
+    cout << "\tMAIN MENU" << endl << "__________________________" <<
     endl << "ADD DIARY       [1]" << endl <<
     "VIEW DIARY      [2]" << endl <<
     "EDIT DIARY      [3]" << endl <<
@@ -69,15 +69,26 @@ void Menu::displayRecordList(vector<RecordManager> records) {
     }
 }
 
-bool Menu::authenticateUser(PasswordManager passwordManager) {
-    string pass;
-    cout << "Please enter your password to access your records";
-    cin >> pass;
-    bool auth = passwordManager.getPassword(pass);
-    if(auth){
-        cout << "User authenticated\n";
+bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHandler) {
+    string password;
+    bool passExist = passwordManager.checkPasswordAvailability();
+
+    if (passExist) {
+        cout << "Please enter your password to access your records\n";
+        cin >> password;
+        bool auth = passwordManager.getPassword(password);
+
+        if (auth) {
+            cout << "User authenticated\n";
+        } else
+            cout << "Incorrect password\n";
+        return auth;
+    } else {
+        string pass;
+        cout<<"Please enter a password for your diary:\n";
+        getline(cin,pass);
+        passwordManager.setPassword(password,fileHandler);
     }
-    else
-        cout << "Incorrect password\n";
-    return auth;
 }
+
+
