@@ -53,9 +53,9 @@ void Menu::getUserChoice(RecordManager recordManager, PasswordManager passwordMa
             recordManager.deleteRecord();
             break;
         case 5:
-            cout << "Please enter a new password:\n";
-
-            getline(cin, newPassword);
+//            cout << "Please enter a new password:\n";
+//            cin.ignore();
+//            getline(cin, newPassword);
             passwordManager.setPassword(newPassword, fileHandler);
             break;
         case 6:
@@ -71,7 +71,7 @@ void Menu::displayRecordList(vector<RecordManager> records) {
 
 bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHandler) {
     string password;
-    bool passExist = passwordManager.checkPasswordAvailability();
+    bool passExist = !passwordManager.checkPasswordAvailability(); //for some reason this works in reverse so ! lol
 
     if (passExist) {
         cout << "Please enter your password to access your records\n";
@@ -85,6 +85,7 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
         return auth;
     } else {
         passwordManager.setPassword(password,fileHandler);
+        return true;
     }
 }
 

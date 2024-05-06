@@ -4,13 +4,13 @@
 #include "PasswordManager.h"
 using namespace std;
 
-bool passwordExists = false;
+
 
 void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	string pass1, pass2;
 	bool doubleCheck = false;
 	char choice;
-
+    bool passwordExists = !checkPasswordAvailability();
 	if (passwordExists) { // to check if there's old password already set
 		cout << "Do you want to change your password? (Y/N)\n";
 		cin >> choice;
@@ -19,6 +19,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 
 			do {
 				cout << "Please enter a new password:\n";
+                cin.ignore();
 				getline(cin, pass1);
 
 				cout << "Please enter your password again:\n";
@@ -59,7 +60,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 				newPassword= pass2;
 				password = newPassword;
 
-                fileHandler.setPassword(password); // passing the password to the file if it matches
+                fileHandler.setPassword(newPassword); // passing the password to the file if it matches
 
                 cout << "Your password is: " << newPassword << "\nremember it well!\n";
                 passwordExists = true;
@@ -74,16 +75,13 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 }
 
 bool PasswordManager::getPassword(const string& pass) {
+    ifstream passCheck("password.txt");
+    getline(passCheck, password);
     return pass == password; /* to check if the password entered is the
     same as the one stored in the file */
 }
 
 bool PasswordManager::checkPasswordAvailability() {
-    bool exists;
-    if (passwordExists){
-        exists = true;
-    }
-    else
-        exists = false;
-    return exists;
+    ifstream passFile("password.txt");
+    return passFile.peek() == ifstream::traits_type::eof();
 }

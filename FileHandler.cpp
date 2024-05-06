@@ -7,8 +7,6 @@ string fileName = "test.csv";
 
 
 ifstream input(fileName);
-ofstream createPass("password.txt",ios::out);
-ifstream checkPass("password.txt");
 ofstream output(fileName, ios::app);
 
 
@@ -57,11 +55,7 @@ void FileHandler::setDirectory(const string &dir) {
 }
 
 void FileHandler::setPassword(string password) {
+    ofstream createPass("password.txt",ios::out);
     createPass << password;
-}
-
-string FileHandler::getPassword() {
-    string pass;
-    getline(checkPass,pass);
-    return pass;
+    createPass.close();
 }
