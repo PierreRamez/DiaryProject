@@ -6,7 +6,13 @@ using namespace std;
 
 bool passwordExists = false;
 
+<<<<<<< Updated upstream
 void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
+=======
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnreachableCode"
+void PasswordManager::setPassword(string newPassword,FileHandler fileHandler) {
+>>>>>>> Stashed changes
 	string pass1, pass2;
 	bool doubleCheck = false;
 	char choice;
