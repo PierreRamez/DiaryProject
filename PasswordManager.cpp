@@ -11,7 +11,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	bool doubleCheck = false;
 	char choice;
 
-	if (passwordExists == true) { // to check if there's old password already set
+	if (passwordExists) { // to check if there's old password already set
 		cout << "Do you want to change your password? (Y/N)\n";
 		cin >> choice;
 
@@ -37,7 +37,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 				else {
 					cout << "Passwords don't match, please re-enter your password:\n";
 				}
-			} while (doubleCheck == 0);
+			} while (!doubleCheck);
 		}
 		else {
 			cout << "Password won't be changed!" << endl;
@@ -47,17 +47,17 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	else { // if this is the first password to be set
 
 		do {
-			cout << "Please enter your password:\n";
+            cout << "Please enter your password:\n";
 			getline(cin, pass1);
 
 			cout << "Please enter your password again:\n"; // password checker
 			getline(cin, pass2);
 
 			if (pass1 == pass2) {
+                doubleCheck = true;
 				cout << "Your password was set successfully!\n";
 				newPassword= pass2;
 				password = newPassword;
-				doubleCheck = true;
 
                 fileHandler.setPassword(password); // passing the password to the file if it matches
 
@@ -69,7 +69,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 			else {
 				cout << "Passwords don't match, please re-enter your password:\n";
 			}
-		} while (doubleCheck == 0);
+		} while (!doubleCheck);
 	}
 }
 

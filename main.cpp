@@ -16,9 +16,13 @@ int main(){
     int i = 0;
 
     menu.authenticateUser(passwordManager,fileHandler);
-    vector<RecordManager> records = fileHandler.readFromFile();
     menu.displayMainMenu();
+    vector<RecordManager> records = fileHandler.readFromFile();
     menu.getUserChoice(recordManager, passwordManager, fileHandler, records);
+
+    string pass;
+    getline(cin,pass);
+    passwordManager.setPassword(password,fileHandler);
 }
 
 

@@ -84,9 +84,6 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
             cout << "Incorrect password\n";
         return auth;
     } else {
-        string pass;
-        cout<<"Please enter a password for your diary:\n";
-        getline(cin,pass);
         passwordManager.setPassword(password,fileHandler);
     }
 }
