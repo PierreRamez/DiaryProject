@@ -7,17 +7,21 @@ using namespace std;
 
 void RecordManager::addRecord(FileHandler fileHandler) {
     cout << "Please enter the task duration: \n";
-    cin >> taskDuration;
+    getline (cin,taskDuration);
     cin.ignore();
 
     cout << "Please enter the name:\n";
     getline(cin, name);
+    cin.ignore();
 
     cout << "Please enter the address: \n";
     getline(cin, address);
+    cin.ignore();
 
     cout << "Please enter the date and time (ex. time, DD//MM//YYYY): \n";
     getline(cin, dateTime);
+    cin.ignore();
+
     fileHandler.saveToFile(*this);
 }
 

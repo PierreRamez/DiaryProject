@@ -74,7 +74,7 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
     bool passExist = !passwordManager.checkPasswordAvailability(); //for some reason this works in reverse so ! lol
 
     if (passExist) {
-        cout << "Please enter your password to access your records\n";
+        cout << "Please enter your password to access your records:\n";
         cin >> password;
         bool auth = passwordManager.getPassword(password);
 
