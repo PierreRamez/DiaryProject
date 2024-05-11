@@ -10,7 +10,7 @@ void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
 	string pass1, pass2;
 	bool doubleCheck = false;
 	char choice;
-    bool passwordExists = !checkPasswordAvailability();
+    bool passwordExists = checkPasswordAvailability();
 	if (passwordExists) { // to check if there's old password already set
 		cout << "Do you want to change your password? (Y/N)\n";
 		cin >> choice;
@@ -83,5 +83,5 @@ bool PasswordManager::getPassword(const string& pass) {
 
 bool PasswordManager::checkPasswordAvailability() {
     ifstream passFile("password.txt");
-    return passFile.peek() == ifstream::traits_type::eof();
+    return passFile.peek();
 }

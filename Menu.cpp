@@ -71,7 +71,7 @@ void Menu::displayRecordList(vector<RecordManager> records) {
 
 bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHandler) {
     string password;
-    bool passExist = !passwordManager.checkPasswordAvailability(); //for some reason this works in reverse so ! lol
+    bool passExist = passwordManager.checkPasswordAvailability();
 
     if (passExist) {
         cout << "Please enter your password to access your records:\n";

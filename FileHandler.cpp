@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string targetDir = "/home/ms/Documents/Records/";
+
 string fileName = "test.csv";
 
 
@@ -12,8 +12,8 @@ ofstream output(fileName, ios::app);
 
 
 void FileHandler::saveToFile(RecordManager recordManager) {
-    output << recordManager.getName() << ',' << recordManager.getDateTime() << ','  << recordManager.getAddress()
-    << ',' << recordManager.getTaskDur() << '\n';
+    output << recordManager.getTaskDur() << ',' << recordManager.getName() << ',' << recordManager.getAddress() <<
+    ',' << recordManager.getDateTime() << '\n';
 }
 
 vector<RecordManager> FileHandler::readFromFile() {
@@ -50,9 +50,6 @@ void FileHandler::updateFile(const vector<RecordManager>& records) {
     }
 }
 
-void FileHandler::setDirectory(const string &dir) {
-    targetDir = dir;
-}
 
 void FileHandler::setPassword(string password) {
     ofstream createPass("password.txt",ios::out);
