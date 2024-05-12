@@ -13,8 +13,9 @@ class Menu
 {
 public:
     void displayMainMenu();
-    void getUserChoice(RecordManager, PasswordManager, FileHandler, vector<RecordManager>);
+    void getUserChoice(RecordManager &, PasswordManager, FileHandler, vector<RecordManager> &);
     void displayRecordList(vector<RecordManager>);
+    void editRecord(vector<RecordManager>&);
     bool authenticateUser(PasswordManager,FileHandler);
 };
 #endif

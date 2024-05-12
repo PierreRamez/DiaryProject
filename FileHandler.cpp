@@ -17,11 +17,8 @@ void FileHandler::saveToFile(RecordManager recordManager) {
 }
 
 vector<RecordManager> FileHandler::readFromFile() {
-
     string line;
     vector<RecordManager> records;
-
-    int idx = 0;
 
     while(getline(input, line)){
         stringstream ss(line);
@@ -33,18 +30,17 @@ vector<RecordManager> FileHandler::readFromFile() {
         }
 
         RecordManager record;
-        record.setName(fields.at(0));
-        record.setDateTime(fields.at(1));
+        record.setTaskDur(fields.at(0));
+        record.setName(fields.at(1));
         record.setAddress(fields.at(2));
-        record.setTaskDur(fields.at(3));
+        record.setDateTime(fields.at(3));
         records.push_back(record);
-        idx++;
     }
     return records;
 }
 
 void FileHandler::updateFile(const vector<RecordManager>& records) {
-    ofstream update(fileName, ios::trunc);
+    ofstream update(fileName);
     for(const auto& record : records){
         saveToFile(record);
     }

@@ -31,6 +31,7 @@ void RecordManager::viewRecord() {
 }
 
 void RecordManager::editRecord(char edit) {
+    cin.ignore();
     if (edit == 'N' || edit == 'n') {
         cout << "Please enter a new name for the diary:\n";
         getline(cin, name);

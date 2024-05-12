@@ -14,7 +14,7 @@ void Menu::displayMainMenu() {
     "EXIT            [6]" << endl;
 }
 
-void Menu::getUserChoice(RecordManager recordManager, PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> records) {
+void Menu::getUserChoice(RecordManager &recordManager, PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> &records) {
     int userChoice;
     do {
         cin >> userChoice;
@@ -29,25 +29,13 @@ void Menu::getUserChoice(RecordManager recordManager, PasswordManager passwordMa
             recordManager.addRecord(fileHandler);
             break;
         case 2:
-            if(records.size() !=0 )
+            if(!records.empty())
                 displayRecordList(records);
+            else
+                cout << "\nThere are no records available.";
             break;
         case 3:
-            char editChoice;
-
-            do {
-                cout << "Please choose the record you want to edit:\n(N : name)\n(A : address)\n(T : duration)\n(D : date & time)\n";
-                cin >> editChoice;
-
-                if (editChoice != 'N' && editChoice != 'n' && editChoice != 'A' && editChoice != 'a' && editChoice != 'T' && editChoice != 't' && editChoice != 'D' && editChoice != 'd')
-                {
-                    cout << "Please enter a valid choice!\n";
-                }
-
-            } while (editChoice != 'N' && editChoice != 'n' && editChoice != 'A' && editChoice != 'a' && editChoice != 'T' && editChoice != 't' && editChoice != 'D' && editChoice != 'd');
-
-
-            recordManager.editRecord(editChoice);
+            editRecord(records);
             break;
         case 4:
             recordManager.deleteRecord();
@@ -89,4 +77,24 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
     }
 }
 
+void Menu::editRecord(vector<RecordManager>& records) {
+    char editChoice;
+    int diaryChoice;
+    displayRecordList(records);
+    cout << "\nPlease select a diary to edit.\n";
+    cin >> diaryChoice;
+    do {
+        cout << "Please choose the record you want to edit:\n(N : name)\n(A : address)\n(T : duration)\n(D : date & time)\n";
+        cin >> editChoice;
+
+        if (editChoice != 'N' && editChoice != 'n' && editChoice != 'A' && editChoice != 'a' && editChoice != 'T' && editChoice != 't' && editChoice != 'D' && editChoice != 'd')
+        {
+            cout << "Please enter a valid choice!\n";
+        }
+
+    } while (editChoice != 'N' && editChoice != 'n' && editChoice != 'A' && editChoice != 'a' && editChoice != 'T' && editChoice != 't' && editChoice != 'D' && editChoice != 'd');
+
+
+    records.at(diaryChoice - 1).editRecord(editChoice);
+}
 

@@ -17,6 +17,7 @@ int main(){
     menu.displayMainMenu();
     vector<RecordManager> records = fileHandler.readFromFile();
     menu.getUserChoice(recordManager, passwordManager, fileHandler, records);
+    fileHandler.updateFile(records);
 }
 
 
