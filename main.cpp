@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "RecordManager.h"
 #include "FileHandler.h"
 #include "PasswordManager.h"
@@ -8,15 +6,19 @@
 using namespace std;
 
 int main(){
-    RecordManager recordManager;
     FileHandler fileHandler;
     PasswordManager passwordManager;
     Menu menu;
+    vector<RecordManager> records;
 
     if(!menu.authenticateUser(passwordManager,fileHandler)) return 0; //if user authentication fails, quit program
+    records = fileHandler.readFromFile();
     menu.displayMainMenu();
-    vector<RecordManager> records = fileHandler.readFromFile();
-    menu.getUserChoice(recordManager, passwordManager, fileHandler, records);
+
+    menu.getUserChoice(passwordManager, fileHandler, records);
+    do{
+        menu.displayMainMenu();
+    }while(!menu.getUserChoice(passwordManager, fileHandler, records));
     fileHandler.updateFile(records);
 }
 

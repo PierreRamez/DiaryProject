@@ -50,10 +50,6 @@ void RecordManager::editRecord(char edit) {
     }
 }
 
-void RecordManager::deleteRecord() {
-    delete this;
-}
-
 string RecordManager::getTaskDur(){
     return taskDuration;
 }

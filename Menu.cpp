@@ -14,8 +14,10 @@ void Menu::displayMainMenu() {
     "EXIT            [6]" << endl;
 }
 
-void Menu::getUserChoice(RecordManager &recordManager, PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> &records) {
+bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> &records) {
     int userChoice;
+    bool exit;
+    RecordManager record;
     do {
         cin >> userChoice;
         if (1 > userChoice || userChoice > 6) {
@@ -26,30 +28,36 @@ void Menu::getUserChoice(RecordManager &recordManager, PasswordManager passwordM
     string newPassword;
     switch(userChoice){
         case 1:
-            recordManager.addRecord(fileHandler);
+            record.addRecord(fileHandler);
+            records.push_back(record);
+            exit = false;
             break;
         case 2:
             if(!records.empty())
                 displayRecordList(records);
             else
                 cout << "\nThere are no records available.";
+            exit = false;
             break;
         case 3:
             editRecord(records);
+            exit = false;
             break;
         case 4:
-            recordManager.deleteRecord();
+            deleteRecord(records);
+            exit = false;
             break;
         case 5:
-//            cout << "Please enter a new password:\n";
-//            cin.ignore();
-//            getline(cin, newPassword);
             passwordManager.setPassword(newPassword, fileHandler);
+            exit = false;
             break;
         case 6:
+            exit = true;
             break;
     }
+    return exit;
 }
+
 void Menu::displayRecordList(vector<RecordManager> records) {
     for(int i = 0; i < records.size(); i++){
         cout << '[' << i+1 << "] ";
@@ -77,12 +85,10 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
     }
 }
 
-void Menu::editRecord(vector<RecordManager>& records) {
+void Menu::editRecord(vector<RecordManager> &records) {
     char editChoice;
-    int diaryChoice;
     displayRecordList(records);
-    cout << "\nPlease select a diary to edit.\n";
-    cin >> diaryChoice;
+    int diaryChoice = getUserChoice();
     do {
         cout << "Please choose the record you want to edit:\n(N : name)\n(A : address)\n(T : duration)\n(D : date & time)\n";
         cin >> editChoice;
@@ -98,3 +104,16 @@ void Menu::editRecord(vector<RecordManager>& records) {
     records.at(diaryChoice - 1).editRecord(editChoice);
 }
 
+void Menu::deleteRecord(vector<RecordManager> &records) {
+    displayRecordList(records);
+    int diaryChoice = getUserChoice();
+    auto itr = records.begin() + diaryChoice;
+    records.erase(itr);
+}
+
+int Menu::getUserChoice() {
+    int diaryChoice;
+    cout << "\nPlease select a diary.\n";
+    cin >> diaryChoice;
+    return diaryChoice;
+}
