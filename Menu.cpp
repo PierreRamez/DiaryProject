@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "main.h"
 #include <iostream>
 #include <string>
 
@@ -18,13 +19,14 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
     int userChoice;
     bool exit;
     RecordManager record;
-    do {
-        cin >> userChoice;
-        if (1 > userChoice || userChoice > 6) {
-            cout << "Please enter a valid choice!\n";
-        }
-
-    } while (1 > userChoice || userChoice > 6);
+//    do {
+//        cin >> userChoice;
+//        if (1 > userChoice || userChoice > 6) {
+//            cout << "Please enter a valid choice!\n";
+//        }
+//
+//    } while (1 > userChoice || userChoice > 6);
+    cin >> userChoice;
     string newPassword;
     switch(userChoice){
         case 1:
@@ -36,7 +38,7 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
             if(!records.empty())
                 displayRecordList(records);
             else
-                cout << "\nThere are no records available.";
+                cout << "\nThere are no records available.\n";
             exit = false;
             break;
         case 3:
@@ -54,7 +56,12 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
         case 6:
             exit = true;
             break;
+        default:
+            exit = false;
+            cout << "Please enter a valid option\n";
+            break;
     }
+    system(CLEAR);
     return exit;
 }
 

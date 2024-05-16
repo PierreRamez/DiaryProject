@@ -1,3 +1,4 @@
+#include "main.h"
 #include "RecordManager.h"
 #include "FileHandler.h"
 #include "PasswordManager.h"
@@ -10,8 +11,10 @@ int main(){
     PasswordManager passwordManager;
     Menu menu;
     vector<RecordManager> records;
+    system(CLEAR);
     if(!menu.authenticateUser(passwordManager,fileHandler)) return 0; //if user authentication fails, quit program
     records = fileHandler.readFromFile();
+    system(CLEAR);
     menu.displayMainMenu();
 
     menu.getUserChoice(passwordManager, fileHandler, records);
