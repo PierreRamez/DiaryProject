@@ -83,5 +83,5 @@ bool PasswordManager::getPassword(const string& pass) {
 
 bool PasswordManager::checkPasswordAvailability() {
     ifstream passFile("password.txt");
-    return passFile.peek();
+    return passFile.peek() != ifstream::traits_type::eof();
 }

@@ -10,7 +10,6 @@ int main(){
     PasswordManager passwordManager;
     Menu menu;
     vector<RecordManager> records;
-
     if(!menu.authenticateUser(passwordManager,fileHandler)) return 0; //if user authentication fails, quit program
     records = fileHandler.readFromFile();
     menu.displayMainMenu();
