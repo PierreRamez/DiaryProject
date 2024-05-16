@@ -19,15 +19,8 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
     int userChoice;
     bool exit;
     RecordManager record;
-//    do {
-//        cin >> userChoice;
-//        if (1 > userChoice || userChoice > 6) {
-//            cout << "Please enter a valid choice!\n";
-//        }
-//
-//    } while (1 > userChoice || userChoice > 6);
     cin >> userChoice;
-    string newPassword;
+    string newPassword, error;
     switch(userChoice){
         case 1:
             record.addRecord(fileHandler);
@@ -35,10 +28,15 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
             exit = false;
             break;
         case 2:
-            if(!records.empty())
+            if(!records.empty()){
                 displayRecordList(records);
+                //wait for a user input before screen is cleared
+                cin.ignore();
+                cout << "\nPlease press any key to go back to the menu.";
+                getchar();
+            }
             else
-                cout << "\nThere are no records available.\n";
+                error = "\nThere are no records available.\n";
             exit = false;
             break;
         case 3:
@@ -58,10 +56,12 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
             break;
         default:
             exit = false;
-            cout << "Please enter a valid option\n";
+            error = "\nPlease enter a valid option\n";
             break;
     }
     system(CLEAR);
+    if(!error.empty())
+        cout << error;
     return exit;
 }
 
@@ -69,6 +69,7 @@ void Menu::displayRecordList(vector<RecordManager> records) {
     for(int i = 0; i < records.size(); i++){
         cout << '[' << i+1 << "] ";
         records.at(i).viewRecord();
+        cout << '\n';
     }
 }
 
