@@ -15,17 +15,17 @@ void Menu::displayMainMenu() {
     "EXIT            [6]" << endl;
 }
 
-bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> &records) {
+bool Menu::getUserChoice(vector<RecordManager> &records) {
     int userChoice;
-    bool exit;
+    bool exit = false;
     RecordManager record;
+    PasswordManager passwordManager;
     cin >> userChoice;
     string newPassword, error;
     switch(userChoice){
         case 1:
-            record.addRecord(fileHandler);
+            record.addRecord();
             records.push_back(record);
-            exit = false;
             break;
         case 2:
             if(!records.empty()){
@@ -37,25 +37,20 @@ bool Menu::getUserChoice(PasswordManager passwordManager, FileHandler fileHandle
             }
             else
                 error = "\nThere are no records available.\n";
-            exit = false;
             break;
         case 3:
             editRecord(records);
-            exit = false;
             break;
         case 4:
             deleteRecord(records);
-            exit = false;
             break;
         case 5:
-            passwordManager.setPassword(newPassword, fileHandler);
-            exit = false;
+            passwordManager.setPassword(newPassword);
             break;
         case 6:
             exit = true;
             break;
         default:
-            exit = false;
             error = "\nPlease enter a valid option\n";
             break;
     }
@@ -73,7 +68,8 @@ void Menu::displayRecordList(vector<RecordManager> records) {
     }
 }
 
-bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHandler) {
+bool Menu::authenticateUser() {
+    PasswordManager passwordManager;
     string password;
     bool passExist = passwordManager.checkPasswordAvailability();
 
@@ -88,7 +84,7 @@ bool Menu::authenticateUser(PasswordManager passwordManager,FileHandler fileHand
             cout << "Incorrect password\n";
         return auth;
     } else {
-        passwordManager.setPassword(password,fileHandler);
+        passwordManager.setPassword(password);
         return true;
     }
 }

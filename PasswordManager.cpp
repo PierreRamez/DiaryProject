@@ -6,7 +6,8 @@ using namespace std;
 
 
 
-void PasswordManager::setPassword(string newPassword, FileHandler fileHandler) {
+void PasswordManager::setPassword(string newPassword) {
+    FileHandler fileHandler;
 	string pass1, pass2;
 	bool doubleCheck = false;
 	char choice;

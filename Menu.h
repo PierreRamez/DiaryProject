@@ -13,11 +13,11 @@ class Menu
 {
 public:
     void displayMainMenu();
-    bool getUserChoice(PasswordManager passwordManager, FileHandler fileHandler, vector<RecordManager> &records);
+    bool getUserChoice(vector<RecordManager> &);
     int getUserChoice();
     void displayRecordList(vector<RecordManager>);
     void editRecord(vector<RecordManager>&);
     void deleteRecord(vector<RecordManager>&);
-    bool authenticateUser(PasswordManager,FileHandler);
+    bool authenticateUser();
 };
 #endif

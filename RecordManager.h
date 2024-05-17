@@ -14,7 +14,7 @@ class RecordManager {
     string address;
     string dateTime;
 public:
-    void addRecord(FileHandler);
+    void addRecord();
     void viewRecord();
     void editRecord(char);
     void deleteRecord();

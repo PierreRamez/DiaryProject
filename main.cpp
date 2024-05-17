@@ -12,15 +12,15 @@ int main(){
     Menu menu;
     vector<RecordManager> records;
     system(CLEAR);
-    if(!menu.authenticateUser(passwordManager,fileHandler)) return 0; //if user authentication fails, quit program
+    if(!menu.authenticateUser()) return 0; //if user authentication fails, quit program
     records = fileHandler.readFromFile();
     system(CLEAR);
     menu.displayMainMenu();
 
-    menu.getUserChoice(passwordManager, fileHandler, records);
+    menu.getUserChoice(records);
     do{
         menu.displayMainMenu();
-    }while(!menu.getUserChoice(passwordManager, fileHandler, records));
+    }while(!menu.getUserChoice(records));
     fileHandler.updateFile(records);
 }
 
