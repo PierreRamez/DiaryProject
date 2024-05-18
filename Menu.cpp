@@ -16,12 +16,16 @@ void Menu::displayMainMenu() {
 }
 
 bool Menu::getUserChoice(vector<RecordManager> &records) {
-    int userChoice;
+    int userChoice = 0;
+    string newPassword, error, input;
     bool exit = false;
     RecordManager record;
     PasswordManager passwordManager;
-    cin >> userChoice;
-    string newPassword, error;
+    /*input is taken as a string, if the first character is a digit, we take it
+     *as the userChoice integer, otherwise it defaults to the original init value (0)*/
+    cin >> input;
+    if(isdigit(input[0]))
+        userChoice = stoi(input);
     switch(userChoice){
         case 1:
             record.addRecord();

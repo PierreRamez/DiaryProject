@@ -9,16 +9,20 @@ void RecordManager::addRecord() {
     cin.ignore();
     cout << "Please enter the task duration: \n";
     getline (cin,taskDuration);
-
+    if(taskDuration.empty())
+        taskDuration += " ";
     cout << "Please enter the name:\n";
     getline(cin, name);
-
+    if(name.empty())
+        name += " ";
     cout << "Please enter the address: \n";
     getline(cin, address);
-
+    if(address.empty())
+        address += " ";
     cout << "Please enter the date and time (ex. time, DD//MM//YYYY): \n";
     getline(cin, dateTime);
-
+    if(dateTime.empty())
+        dateTime += " ";
     FileHandler fileHandler;
     fileHandler.saveToFile(*this);
 }
@@ -35,18 +39,26 @@ void RecordManager::editRecord(char edit) {
     if (edit == 'N' || edit == 'n') {
         cout << "Please enter a new name for the diary:\n";
         getline(cin, name);
+        if(name.empty())
+            name += " ";
     }
     else if (edit == 'A' || edit == 'a') {
         cout << "Please enter a new address for the diary:\n";
         getline(cin, address);
+        if(address.empty())
+            address += " ";
     }
     else if (edit == 'T' || edit == 't') {
         cout << "Please enter a new duration for the diary:\n";
         getline(cin, taskDuration);
+        if(taskDuration.empty())
+            taskDuration += " ";
     }
     else if (edit == 'D' || edit == 'd') {
         cout << "Please enter a new date and time for the diary:\n";
         getline(cin, dateTime);
+        if(dateTime.empty())
+            dateTime += " ";
     }
 }
 
