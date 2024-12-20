@@ -4,8 +4,6 @@
 #include "PasswordManager.h"
 using namespace std;
 
-
-
 void PasswordManager::setPassword(string newPassword) {
     FileHandler fileHandler;
 	string pass1, pass2;
