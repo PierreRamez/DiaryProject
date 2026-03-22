@@ -1,2 +1,2 @@
 # Diary Management System
-This project is for the COM265 course project. 
+This project is for the COM265 course. 
